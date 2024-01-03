@@ -1,53 +1,43 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import type { ITaskProps } from '@interfaces';
 import { v4 } from 'uuid';
+
+import type { ITaskProps, TTaskStatus } from '@interfaces';
+
+const getInitialState = () => {
+	const tasks = localStorage.getItem('tasks');
+
+	if (tasks) {
+		return {
+			tasks: JSON.parse(tasks) as ITaskProps[],
+		};
+	}
+
+	return {
+		tasks: [],
+	};
+};
 
 interface ITaskState {
 	tasks: ITaskProps[];
 }
 
 const initialState: ITaskState = {
-	tasks: [
-		{
-			id: v4(),
-			name: 'Task 1',
-			status: 'pending',
-		},
-		{
-			id: v4(),
-			name: 'Task 2',
-			status: 'completed',
-		},
-		{
-			id: v4(),
-			name: 'Task 3',
-			status: 'pending',
-		},
-		{
-			id: v4(),
-			name: 'Task 4',
-			status: 'completed',
-		},
-		{
-			id: v4(),
-			name: 'Task 5',
-			status: 'pending',
-		},
-		{
-			id: v4(),
-			name: 'Task 6',
-			status: 'completed',
-		},
-	],
+	...getInitialState(),
 };
 
 export const tasksSlice = createSlice({
 	name: 'tasks',
 	initialState,
 	reducers: {
-		addTask: (_state, { payload }: PayloadAction<ITaskProps>) => {
-			_state.tasks.push(payload);
+		addTask: (_state, { payload }: PayloadAction<{ name: string }>) => {
+			const newTask = {
+				...payload,
+				id: v4(),
+				status: 'pending' as TTaskStatus,
+			};
+
+			_state.tasks.unshift(newTask);
 		},
 		completeTask: (_state, { payload }: PayloadAction<{ id: string }>) => {
 			const task = _state.tasks.find(({ id }) => id === payload.id);
@@ -56,10 +46,18 @@ export const tasksSlice = createSlice({
 				task.status = 'completed';
 			}
 		},
+		reOpenTask: (_state, { payload }: PayloadAction<{ id: string }>) => {
+			const task = _state.tasks.find(({ id }) => id === payload.id);
+
+			if (task) {
+				task.status = 'pending';
+			}
+		},
 		removeTask: (_state, { payload }: PayloadAction<{ id: string }>) => {
 			_state.tasks = _state.tasks.filter(({ id }) => id !== payload.id);
 		},
 	},
 });
 
-export const { addTask, completeTask, removeTask } = tasksSlice.actions;
+export const { addTask, completeTask, removeTask, reOpenTask } =
+	tasksSlice.actions;

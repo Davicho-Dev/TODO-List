@@ -6,6 +6,15 @@ export const tasksMiddleware = (state: MiddlewareAPI) => {
 	return (next: Dispatch) => (action: Action) => {
 		next(action);
 
-		console.log(state);
+		if (
+			action.type === 'tasks/addTask' ||
+			action.type === 'tasks/completeTask' ||
+			action.type === 'tasks/reOpenTask' ||
+			action.type === 'tasks/removeTask'
+		) {
+			const { tasks } = state.getState();
+
+			localStorage.setItem('tasks', JSON.stringify(tasks.tasks));
+		}
 	};
 };
