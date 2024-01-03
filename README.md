@@ -1,30 +1,74 @@
-# React + TypeScript + Vite
+# TODO List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+### 1. Initial setup:
+	- Create a React project.
+	- Set up the dependencies needed to work with React and any other tools you find useful.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 2. Components:
+	- Create a `TaskList` component that displays a list of tasks. It should receive a list of tasks as props and display them in the interface.
+	- Create a `Task` component that represents an individual task. This component must have the ability to mark a task as completed or delete it.
 
-## Expanding the ESLint configuration
+### 3. Functionality:
+	- Implements the ability to add a new task. There must be a text field and a button to add the task to the list.
+	- Allows a task to be marked as completed. Clicking on the task should change its status to completed and visually display this change.
+	- Adds the functionality to delete a task. There should be a button on each task that allows it to be removed from the list.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### 4. Styles:
+	- Use CSS (or a style library such as styled-components) to style the application and make it visually appealing.
+	- Make sure the application is responsive and looks good on different screen sizes.
 
-- Configure the top-level `parserOptions` property like this:
+### 5. Bonus (optional):
+	- Implement data persistence using the browser's local storage so that tasks persist even after refreshing the page.
+	- Add animations or transitions to enhance the user experience when interacting with the tasks.
+	- Backend design required for operation.
 
-```js
-export default {
-	// other rules...
-	parserOptions: {
-		ecmaVersion: 'latest',
-		sourceType: 'module',
-		project: ['./tsconfig.json', './tsconfig.node.json'],
-		tsconfigRootDir: __dirname,
-	},
-};
+
+# Steps to run the project
+
+### 1. Install dependencies
+```bash
+npm i -g bun
+```
+```bash
+bun install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### 2. Run the project
+```bash
+bun dev --open
+```
+
+
+# Project structure
+
+### 1. Structure 
+	- src
+		- components (Atomic Design)
+			- Atoms
+			- Molecules
+			- Organisms
+		- hooks
+		- pages
+		- redux (State management)
+			- middlewares
+			- slices
+			- store
+		- router
+		- styles
+			- globals
+			- base dependencies
+
+### 2. Dependencies
+	- React Vite + Typescript
+	- SASS (CSS Preprocessor)
+	- Redux Toolkit (State management)
+	- TailwindCSS + Daisy UI (CSS Framework)
+	- tabler icons (Icons)
+	- uuid (Generate unique id)
+	- React Toastify (Notifications)
+	- React Hook Form (Form validation)
+
+
+### 3. Deployment
+- Vercel: [Click here](https://todo-list-davichodev.vercel.app) to view it in the browser

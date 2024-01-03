@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { IconLoader2, IconPlus } from '@tabler/icons-react';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
@@ -6,7 +8,6 @@ import type { SubmitHandler } from 'react-hook-form';
 
 import { addTask } from '@RTK/slices';
 import { useAppDispatch } from '@hooks';
-import { useEffect, useState } from 'react';
 
 export const NewTaskForm = () => {
 	const [onLoading, setOnLoading] = useState<boolean>(false);
