@@ -8,7 +8,9 @@ export const TaskList = ({ tasks }: ITasksProps) => {
 			{tasks.length > 0 ? (
 				tasks?.map(task => <Task key={task.id} {...task} />)
 			) : (
-				<h1 className='p-4 inline-flex gap-x-3 text-center'>No tasks yet.</h1>
+				<h1 className='p-4 inline-flex gap-x-3 text-center dark:text-neutral-200'>
+					No tasks yet.
+				</h1>
 			)}
 		</ul>
 	);

@@ -30,12 +30,12 @@ export const Task = ({ name, status, id }: ITaskProps) => {
 				className={`w-5 h-5 inline-grid place-content-center leading-none border rounded-full ${
 					status === 'pending'
 						? 'border-neutral-600 dark:border-neutral-200'
-						: 'border-neutral-400 dark:border-neutral-600'
+						: 'bg-primary border-transparent'
 				}`}
 				onClick={hdlCompleteTask}
 			>
 				{status === 'completed' ? (
-					<IconCheck className='w-4 text-neutral-400 dark:text-neutral-600' />
+					<IconCheck className='w-4 text-neutral-200 dark:text-neutral-600 duration-100' />
 				) : null}
 			</button>
 			<span
