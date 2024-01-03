@@ -29,7 +29,13 @@ export const Task = ({ name, status, id }: ITaskProps) => {
 	};
 
 	const hdlRemoveTask = () => {
+		setOnLoading(true);
+
 		dispatch(removeTask({ id }));
+
+		setTimeout(() => {
+			setOnLoading(false);
+		}, 1000);
 	};
 
 	return (
@@ -71,7 +77,11 @@ export const Task = ({ name, status, id }: ITaskProps) => {
 				className={`${styles.task__actions} dark:text-neutral-200`}
 				title='Delete task'
 			>
-				<IconX className='w-full' />
+				{onLoading ? (
+					<IconLoader2 className='w-4 text-neutral-200 dark:text-neutral-600 duration-100 animate-spin' />
+				) : (
+					<IconX className='w-full' />
+				)}
 			</button>
 		</li>
 	);
