@@ -13,10 +13,10 @@ export const ButtonToggle = () => {
 	return (
 		<button
 			type='button'
-			className='w-12 h-12 flex justify-center items-center dark:text-neutral-200 bg-white dark:bg-neutral-900 rounded-full shadow-md fixed right-4 bottom-4'
+			className='w-12 h-12 flex justify-center items-center  bg-white dark:bg-neutral-900 rounded-full shadow-md fixed right-4 bottom-4'
 			onClick={hdlToggleTheme}
 		>
-			{isDarkMode ? <IconMoon /> : <IconSun />}
+			{isDarkMode ? <IconMoon className='text-neutral-200' /> : <IconSun />}
 		</button>
 	);
 };
