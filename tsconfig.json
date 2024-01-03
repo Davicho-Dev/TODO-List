@@ -28,6 +28,9 @@
 			"@hooks": ["hooks/index.ts"],
 			"@interfaces": ["interfaces/index.ts"],
 			"@pages": ["pages/index.ts"],
+			"@RTK/store": ["redux/index.ts"],
+			"@RTK/middlewares": ["redux/middlewares/index.ts"],
+			"@RTK/slices": ["redux/slices/index.ts"],
 			"@router": ["router/index.ts"],
 			"@styles/*": ["styles/"],
 			"@utils": ["utils/index.ts"]

@@ -27,6 +27,12 @@ export default defineConfig({
 			'@hooks': path.resolve(__dirname, './src/hooks/index.ts'),
 			'@interfaces': path.resolve(__dirname, './src/utils/interfaces/index.ts'),
 			'@pages': path.resolve(__dirname, './src/pages/index.ts'),
+			'@RTK/store': path.resolve(__dirname, './src/redux/index.ts'),
+			'@RTK/middlewares': path.resolve(
+				__dirname,
+				'./src/redux/middlewares/index.ts'
+			),
+			'@RTK/slices': path.resolve(__dirname, './src/redux/slices/index.ts'),
 			'@router': path.resolve(__dirname, './src/router/index.ts'),
 			'@styles': path.resolve(__dirname, './src/styles/'),
 			'@utils': path.resolve(__dirname, './src/utils/index.ts'),
