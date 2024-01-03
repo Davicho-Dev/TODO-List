@@ -1,27 +1,45 @@
 import { IconCheck, IconX } from '@tabler/icons-react';
 
+import { completeTask, removeTask, reOpenTask } from '@RTK/slices';
+import { useAppDispatch } from '@hooks';
+
 import type { ITaskProps } from '@interfaces';
 
 import styles from './Task.module.sass';
 
-export const Task = ({ name, status }: ITaskProps) => {
+export const Task = ({ name, status, id }: ITaskProps) => {
+	const dispatch = useAppDispatch();
+
+	const hdlCompleteTask = () => {
+		if (status === 'pending') {
+			dispatch(completeTask({ id }));
+		} else {
+			dispatch(reOpenTask({ id }));
+		}
+	};
+
+	const hdlRemoveTask = () => {
+		dispatch(removeTask({ id }));
+	};
+
 	return (
 		<li className={styles.task}>
 			<button
 				type='button'
-				className={`w-5 h-5 inline-grid place-content-center leading-none border rounded-full transition-colors ease-in-out duration-500 ${
+				title='Complete task'
+				className={`w-5 h-5 inline-grid place-content-center leading-none border rounded-full ${
 					status === 'pending'
 						? 'border-neutral-600 dark:border-neutral-200'
 						: 'border-neutral-400 dark:border-neutral-600'
 				}`}
-				// onClick={() => hdlCompleteTask({ id, status })}
+				onClick={hdlCompleteTask}
 			>
 				{status === 'completed' ? (
-					<IconCheck className='w-4 text-neutral-400 dark:text-neutral-600 transition-colors ease-in-out duration-500' />
+					<IconCheck className='w-4 text-neutral-400 dark:text-neutral-600' />
 				) : null}
 			</button>
 			<span
-				className={`grow dark:text-neutral-200 relative transition-all ease-in-out duration-500 after:content-[''] after:absolute after:w-0 after:h-0 after:my-auto after:border-b after:border-b-neutral-200 after:dark:border-b-neutral-600 after:inset-y-0 after:left-0 after:transition-all after:ease-in-out after:duration-500 ${
+				className={`grow dark:text-neutral-200 relative after:content-[''] after:absolute after:w-0 after:h-0 after:my-auto after:border-b after:border-b-neutral-200 after:dark:border-b-neutral-600 after:inset-y-0 after:left-0 ${
 					status === 'pending'
 						? ''
 						: 'text-neutral-400 dark:text-neutral-600 after:!w-full'
@@ -30,9 +48,10 @@ export const Task = ({ name, status }: ITaskProps) => {
 				{name}
 			</span>
 			<button
-				// onClick={() => hdlDeleteTask({ id })}
+				onClick={hdlRemoveTask}
 				type='button'
-				className={styles.task__actions}
+				className={`${styles.task__actions} dark:text-neutral-200`}
+				title='Delete task'
 			>
 				<IconX className='w-full' />
 			</button>
